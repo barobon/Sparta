@@ -11,6 +11,9 @@ public class movement : MonoBehaviour
     Vector2 direction = Vector2.zero;
     bool isGround = true;
     bool isJump = false;
+
+    public AudioSource audioSource;
+    public AudioClip clip;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,20 +41,27 @@ public class movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGround)
         {
-            rigid.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
-            isGround = false;
+            Jump();
             isJump = true;
         }
         else if(Input.GetKeyDown(KeyCode.UpArrow) && isJump)
         {
-            rigid.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
-            isGround = false;
+            Jump();
             isJump = false;
         }
 
         
     }
 
+    private void Jump()
+    {
+        audioSource.clip = clip;
+        audioSource.volume = SoundManager.Instance.volume;
+        audioSource.Play();
+        rigid.AddForce(Vector2.up * jump_force, ForceMode2D.Impulse);
+        isGround = false;
+        
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag=="Ground")

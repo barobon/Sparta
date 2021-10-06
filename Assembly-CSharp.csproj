@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\movement.cs" />
     <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\SoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
