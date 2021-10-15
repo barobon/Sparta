@@ -6,17 +6,26 @@ using UnityEditor.SceneManagement;
 
 public class PopupScript : MonoBehaviour
 {
-    public static string nextScene = "GameScene";
-    //로딩 씬으로 넘겨주기 위해 public static으로 선언
+    private string nextScene = "GameScene";
 
-    void startBtnClicked()
+    private void Awake()
     {
-        StartCoroutine(LoadScene());
+        closePopup();
+    }
+    public void startBtnClicked()
+    {
+        LoadingManager.LoadScene(nextScene);
     }
 
-    IEnumerator LoadScene()
+    public void closePopup()
     {
-        yield return null;
+        this.gameObject.SetActive(false);   //팝업 비활성화
     }
+
+    public void openPopup()
+    {
+        this.gameObject.SetActive(true);
+    }
+
 }
 
