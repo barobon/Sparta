@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class MonoSingleton<T> : MonoBehaviour where T : Component
 {
-    protected static T _instance;
+//where은 제네릭 형식 제약 조건
+//T는 Component 형식이어야 한다
 
-    public static T Instance
+    protected static T _instance;   //안전성을 위한 변수
+
+    public static T Instance        // 변수의 값을 쉽게 가져올 수 있는 접근자(property)
     {
         get
         {
